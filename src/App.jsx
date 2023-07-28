@@ -7,7 +7,6 @@ function App() {
   return (
    <div className={styles.container}>
     <Navbar />
-    <h1>vagas</h1>
     <Outlet />
     <Footer />
    </div>

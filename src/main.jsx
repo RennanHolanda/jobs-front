@@ -9,7 +9,9 @@ import {
 } from "react-router-dom";
 
 import ErrorPage from './routes/ErrorPage.jsx';
-import Jobs from './routes/Jobs.jsx';
+import Home from './routes/Home.jsx';
+import JobDetails from './routes/JobDetails.jsx';
+import RegisterJobs from './routes/RegisterJobs.jsx';
 
 const router = createBrowserRouter([
   {
@@ -18,8 +20,16 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path:"/jobs",
-        element: <Jobs />
+        path:"/",
+        element: <Home />
+      },
+      {
+        path:"/jobdetails",
+        element: <JobDetails />
+      },
+      {
+        path:"/registerjobs",
+        element: <RegisterJobs />
       }
     ]
     

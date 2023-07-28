@@ -1,0 +1,71 @@
+/* job-view */
+
+#job_container {
+    margin-top: 100px;
+    height: 45rem;
+  }
+  
+  #job_container h1 {
+    margin-bottom: 30px;
+  }
+  
+  #img_container {
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+  
+  #img_container img {
+    width: 100px;
+    border-radius: 50%;
+    border: 1px solid #212529;
+  }
+  
+  .job_desc {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .bold {
+    font-weight: bold;
+  }
+  
+  #main_color {
+    color: #F03E3E;
+  }
+  
+  .back_link {
+    border: 1px solid #F03E3E;
+    padding: 5px 10px;
+    transition: .5s;
+    text-decoration: none;
+    width: 5rem;
+  }
+  
+  .back_link:hover {
+    background-color: #F03E3E;
+    color: #FFF !important;
+    text-decoration: none;
+  }
+
+  @media (max-width: 481px){
+    
+  /* job view*/
+
+  #job_container {
+    margin-top: 50px;
+    height: 29.9rem;
+  }
+
+  .back_link {
+    margin-left: 30px;
+  }
+
+  #job_view_container p {
+    font-size: 1.3rem;
+  }
+
+  .job_desc {
+    width: 80%;
+  }
+  }
