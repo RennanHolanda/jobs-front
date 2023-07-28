@@ -1,7 +1,32 @@
+import { useState } from "react";
+
 import styles from "./RegisterJobs.module.css";
+
 import { Button } from "react-bootstrap";
 
 const RegisterJobs = () => {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [company, setCompany] = useState("");
+  const [email, setEmail] = useState("");
+  const [salary, setSalary] = useState("");
+
+  const handleTitle = (event) => {
+    setTitle(event.target.value);
+  };
+  const handleDescription = (event) => {
+    setDescription(event.target.value);
+  };
+  const handleCompany = (event) => {
+    setCompany(event.target.value);
+  };
+  const handleEmail = (event) => {
+    setEmail(event.target.value);
+  };
+  const handleSalary = (event) => {
+    setSalary(event.target.value);
+  };
+
   return (
     <div className="container" id={styles.add_form_container}>
       <div className="row">
@@ -23,6 +48,8 @@ const RegisterJobs = () => {
                 className="form-control"
                 placeholder="Digite o título da vaga"
                 required
+                onChange={handleTitle}
+                value={title}
               />
               <small id={styles.title_Help} className="form-text text-muted">
                 O título é muito importante, seja claro e objetivo.
@@ -35,6 +62,8 @@ const RegisterJobs = () => {
                 className="form-control"
                 placeholder="Descreva as atividades do desenvolvedor..."
                 required
+                onChange={handleDescription}
+                value={description}
               ></textarea>
             </div>
             <div className="form-group">
@@ -44,6 +73,8 @@ const RegisterJobs = () => {
                 className="form-control"
                 placeholder="Digite a empresa que vai contratar"
                 required
+                onChange={handleCompany}
+                value={company}
               />
             </div>
             <div className="form-group">
@@ -53,6 +84,8 @@ const RegisterJobs = () => {
                 className="form-control"
                 placeholder="Digite o e-mail para contato"
                 required
+                onChange={handleEmail}
+                value={email}
               />
             </div>
             <div className="form-group">
@@ -62,6 +95,8 @@ const RegisterJobs = () => {
                 className="form-control"
                 placeholder="Digite o Salário da vaga"
                 required
+                onChange={handleSalary}
+                value={salary}
               />
             </div>
             <input type="hidden" name="new_job" value="1" />

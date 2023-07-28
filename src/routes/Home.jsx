@@ -1,6 +1,7 @@
 import styles from "./Home.module.css";
 import { Button } from "react-bootstrap";
 import Company from "../assets/company.svg";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -48,16 +49,16 @@ const Home = () => {
                     <p>R$2000,00</p>
                   </div>
                   <span className={styles.new_job_label}>Nova</span>
-                    <a href="/jobdetails">Ver vaga</a>
+                  <Link to={"/jobdetails"} className={styles.link_button}>Ver vaga</Link>
                 </li>
                 <li className={styles.list_group_item}>
                   <img src={Company} alt="Company" />
                   <div>
-                  <p>Empresa</p>
-                  <h2>Título da vaga</h2>
-                  <p>R$2000,00</p>
+                    <p>Empresa</p>
+                    <h2>Título da vaga</h2>
+                    <p>R$2000,00</p>
                   </div>
-                  <a href="/jobdetails">Ver vaga</a>
+                  <Link to={"/jobdetails"} className={styles.link_button}>Ver vaga</Link>
                 </li>
               </ul>
             </div>
