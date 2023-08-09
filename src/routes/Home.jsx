@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import Company from "../assets/company.svg";
 import { Link } from "react-router-dom";
@@ -7,6 +7,7 @@ import styles from "./Home.module.css";
 
 const Home = () => {
   const [job, setJob] = useState([]);
+  const [initialJobList, setInitialJobList] = useState([])
   const [searchTerm, setSearchTerm] = useState("");
   const [noResults, setNoResults] = useState(false);
 
@@ -15,19 +16,30 @@ const Home = () => {
       try {
         const response = await Api.get("/jobs");
         setJob(response.data);
+        setInitialJobList(response.data);
       } catch (error) {
-        console.error('Erro ao buscar as informações:', error);
+        console.error("Erro ao buscar as informações:", error);
       }
     }
-    
+
     fetchData();
   }, []);
 
   const handleSearch = (e) => {
     e.preventDefault();
-    const filteredJobs = job.filter(data => data.title.toLowerCase().includes(searchTerm.toLowerCase()));
+
+    if (searchTerm.trim() === "") {
+      setJob(initialJobList);
+      setNoResults(false);
+      return;
+    }
+    const filteredJobs = job.filter((data) =>
+      data.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
     setJob(filteredJobs);
     setNoResults(filteredJobs.length === 0);
+
+    setSearchTerm("");
   };
 
   return (
@@ -40,7 +52,11 @@ const Home = () => {
           Somos o site com mais vagas de tecnologia no mercado, direcionadas a
           home office
         </p>
-        <form id={styles.search_form} className="form-inline" onSubmit={handleSearch}>
+        <form
+          id={styles.search_form}
+          className="form-inline"
+          onSubmit={handleSearch}
+        >
           <div className="form-group col-md-10">
             <input
               type="text"
@@ -73,7 +89,11 @@ const Home = () => {
               ) : (
                 <ul id={styles.job_list} className="list-group">
                   {job.map((data) => (
-                    <li key={data.id} className={styles.list_group_item} id={styles.new_job}>
+                    <li
+                      key={data.id}
+                      className={styles.list_group_item}
+                      id={styles.new_job}
+                    >
                       <img src={Company} alt="Company" />
                       <div>
                         <p>{data.company}</p>
@@ -81,7 +101,12 @@ const Home = () => {
                         <p>R$: {data.salary}</p>
                       </div>
                       <span className={styles.new_job_label}>Nova</span>
-                      <Link to={`/job/${data.id}`} className={styles.link_button}>Ver vaga</Link>
+                      <Link
+                        to={`/job/${data.id}`}
+                        className={styles.link_button}
+                      >
+                        Ver vaga
+                      </Link>
                     </li>
                   ))}
                 </ul>
