@@ -8,6 +8,10 @@
   #job_container h1 {
     margin-bottom: 30px;
   }
+
+  #loading {
+    height: 60rem;
+  }
   
   #img_container {
     margin-top: 20px;
@@ -67,5 +71,8 @@
 
   .job_desc {
     width: 80%;
+  }
+  #loading {
+    height: 40rem;
   }
   }

@@ -54,6 +54,15 @@
   border-color: #f03e3e;
 }
 
+#no_results {
+  background-color: #f03e3e;
+  color: #fff;
+  text-align: center;
+  font-size: 2rem;
+  height: 5rem;
+  margin-top: 2rem;
+}
+
 /* lista */
 
 #jobs_container {
@@ -71,7 +80,7 @@
   border: 1px solid #ccc;
   padding: 15px 80px;
   color: #212529;
-  height: 120px;
+  height: 150px;
 }
 
 #job_list .list_group_item p {
@@ -85,7 +94,7 @@
 }
 
 .list_group_item img {
-  width: 90px;
+  width: 120px;
   border: 1px solid #212529;
   border-radius: 50%;
   background-color: #fff;
@@ -98,7 +107,6 @@
 }
 
 .list_group_item div {
-  /* background-color: #f03e3e; */
   margin-left: 2rem;
 }
 
@@ -117,6 +125,10 @@
   padding: 10px;
 }
 
+#new_job h2 {
+  width: 20rem;
+}
+
 .new_job_label {
   background-color: #ffd500;
   color: #4d5154;
@@ -126,7 +138,7 @@
   right: 250px;
   top: 40px;
   display: none;
-  margin-left: 32rem;
+  margin-left: 25rem;
   height: 30px;
   margin-top: 1.5rem;
 }
@@ -135,7 +147,7 @@
   display: block;
 }
 
-@media (max-width: 481px) {
+@media (min-width: 375px) and (max-width: 573px) {
   #search_form {
     display: grid;
   }
@@ -158,12 +170,28 @@
     padding: 0;
   }
 
+  #no_results {
+    text-align: center;
+    font-size: 2rem;
+    height: 6rem;
+    margin-top: 2rem;
+  }
+
   #jobs_container {
     padding: 20px;
   }
 
+  
+#new_job h2 {
+  width: 10rem;
+}
+
   .list_group_item {
     padding: 15px 85px;
+  }
+
+  #job_list .list_group_item {
+    height: 120px;
   }
 
   .link_button {
@@ -196,4 +224,55 @@
   #new_job .new_job_label {
     display: none;
   }
+}
+
+@media (min-width: 574px) and (max-width: 864px) {
+  #search_form {
+    display: flex;
+  }
+
+  /* home */
+  #top_container {
+    padding: 50px;
+    padding-top: 20px;
+  }
+
+  #main_title {
+    font-size: 3rem;
+  }
+
+  #main_subtitle {
+    font-size: 1.5rem;
+  }
+#new_job h2 {
+  width: 8rem;
+}
+
+
+  .link_button {
+    margin-right: 10rem;
+    
+  }
+
+  .list_group_item h2 {
+    font-size: 1.2rem;
+    width: 80%;
+  }
+
+  .list_group_item img {
+  width: 3rem;
+  margin-left: -4.5rem;
+  margin-top: 1.5rem;
+  height: 3rem;
+  }
+
+  .new_job_label {
+    margin-left: 0rem;
+    background-color: #ffd500;
+    position: relative;
+  }
+
+  #new_job .new_job_label {
+    display: none;
+}
 }

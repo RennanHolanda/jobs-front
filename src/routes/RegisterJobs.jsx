@@ -1,31 +1,44 @@
-import { useState } from "react";
-
 import styles from "./RegisterJobs.module.css";
-
-import { Button } from "react-bootstrap";
+import Api from "../services/Api";
+import { useState } from "react";
+import { Button, Spinner } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const RegisterJobs = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [company, setCompany] = useState("");
-  const [email, setEmail] = useState("");
-  const [salary, setSalary] = useState("");
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+    salary: "",
+    company: "",
+    email: "",
+    new_job: 1,
+  });
 
-  const handleTitle = (event) => {
-    setTitle(event.target.value);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(formData);
+    try {
+      setLoading(true);
+      const response = await Api.post("/job", formData);
+
+      if (response.status === 200) {
+        console.log("Dados enviados com sucesso:", response.data);
+        navigate("/");
+      } else {
+        console.log("Erro ao enviar os dados. Status:", response.status);
+      }
+    } catch (error) {
+      console.error("Erro ao enviar os dados:", error);
+    } finally {
+      setLoading(false);
+    }
   };
-  const handleDescription = (event) => {
-    setDescription(event.target.value);
-  };
-  const handleCompany = (event) => {
-    setCompany(event.target.value);
-  };
-  const handleEmail = (event) => {
-    setEmail(event.target.value);
-  };
-  const handleSalary = (event) => {
-    setSalary(event.target.value);
-  };
+
+  function handleChange(e) {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  }
 
   return (
     <div className="container" id={styles.add_form_container}>
@@ -40,7 +53,7 @@ const RegisterJobs = () => {
             Preencha os dados da melhor forma possível para encontrar mais
             rápido seu dev!
           </h2>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label>Título da vaga:</label>
               <input
@@ -48,8 +61,9 @@ const RegisterJobs = () => {
                 className="form-control"
                 placeholder="Digite o título da vaga"
                 required
-                onChange={handleTitle}
-                value={title}
+                name="title"
+                value={formData.title}
+                onChange={handleChange}
               />
               <small id={styles.title_Help} className="form-text text-muted">
                 O título é muito importante, seja claro e objetivo.
@@ -62,8 +76,9 @@ const RegisterJobs = () => {
                 className="form-control"
                 placeholder="Descreva as atividades do desenvolvedor..."
                 required
-                onChange={handleDescription}
-                value={description}
+                name="description"
+                value={formData.description}
+                onChange={handleChange}
               ></textarea>
             </div>
             <div className="form-group">
@@ -73,8 +88,9 @@ const RegisterJobs = () => {
                 className="form-control"
                 placeholder="Digite a empresa que vai contratar"
                 required
-                onChange={handleCompany}
-                value={company}
+                name="company"
+                value={formData.company}
+                onChange={handleChange}
               />
             </div>
             <div className="form-group">
@@ -84,8 +100,9 @@ const RegisterJobs = () => {
                 className="form-control"
                 placeholder="Digite o e-mail para contato"
                 required
-                onChange={handleEmail}
-                value={email}
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
               />
             </div>
             <div className="form-group">
@@ -95,13 +112,14 @@ const RegisterJobs = () => {
                 className="form-control"
                 placeholder="Digite o Salário da vaga"
                 required
-                onChange={handleSalary}
-                value={salary}
+                name="salary"
+                value={formData.salary}
+                onChange={handleChange}
               />
             </div>
             <input type="hidden" name="new_job" value="1" />
             <Button type="submit" variant="primary">
-              Enviar
+              {loading ? <Spinner animation="border" size="sm" /> : "Enviar"}
             </Button>{" "}
           </form>
         </div>
